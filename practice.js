@@ -3,18 +3,20 @@
 
       //Answer
 
+
   // 2) What are the four rules that govern what the 'this keyword' is bound to and describe each?
 
       //Answer
-
+      //explicit, implicit, higher in the scope, new
   // 3) What is the difference between call and apply?
 
       //Answer
-
+      //call takes in variables after the first param
+      //apply takes in an array of variables after the first param
   // 4) What does .bind do?
 
       //Answer
-
+      //binds the function to a variable?
 
 //Next Problem
 
@@ -24,14 +26,33 @@
   //getUsername --> which is a function that returns the current object's username property. *Don't use 'user' instead use the 'this' keyword*
 
     //Code Here
-
+var user = {
+  username: 'halfes',
+  email: 'abcd@ms.com',
+  getUsername: function() {
+    return this.username;
+  },
+}
 //Now, invoke the getUsername method and verify you got the username of the object and not anything else.
+
+user.getUsername();
+console.log(user.getUsername());
 
 
 //Next Problem
 
 
 // Write a constructor function, including method definitions, which will make the following function invocations function properly.
+function Car(make, model, year){
+  this.make = make;
+  this.model = model;
+  this.year = year;
+  this.move = 0;
+  this.moveCar = function() {
+    this.move += 10;
+    return this.move;
+  }
+}
 
   //Function Invocations Here
 
@@ -55,6 +76,8 @@ var getYear = function(){
 
 //Note(no tests)
   //Code Here
+  console.log(getYear.call(prius));
+  console.log(getYear.call(mustang));
 
 
 //New Problem
@@ -69,16 +92,15 @@ var getMyUsername = function() {
  return this.username;
 };
 
-var userName = getMyUsername(); //Fix this
+var userName = getMyUsername.call(myUser); //Fix this
 
 //Above you're given an object, and  a function. What will the getMyUsername function return?
 //Note(no tests)
   //Answer Here
-
+  //nothing?
 //In the example above, what is the 'this keyword' bound to when getMyUsername runs?
 
   //Answer Here
-
+  //the browser window
 
 //Fix the getMyUsername invocation (stored in the userName variable, at the bottom of the above code) so that userName will be equal to 'iliketurtles'.
-
